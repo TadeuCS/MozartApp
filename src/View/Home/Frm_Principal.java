@@ -84,7 +84,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         item_backup = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Loca SYS 1.0");
+        setTitle("MozartApp 1.0");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

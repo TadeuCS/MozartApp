@@ -158,7 +158,8 @@ public class Frm_ConsRotas extends javax.swing.JFrame {
         jLabel139 = new javax.swing.JLabel();
         jLabel140 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Corridas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

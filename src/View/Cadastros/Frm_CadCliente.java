@@ -72,7 +72,8 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         txt_numero2 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Cliente");
 
         pnl_pesquisa2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
