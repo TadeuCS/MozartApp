@@ -1,10 +1,16 @@
 package View.Home;
 
-
-
 import Util.Classes.Data;
 import Util.Classes.MySQLBackup;
 import Util.Classes.PropertiesManager;
+import View.Cadastros.Frm_CadCliente;
+import View.Cadastros.Frm_CadCorrida;
+import View.Cadastros.Frm_CadMotorista;
+import View.Cadastros.Frm_CadUsuario;
+import View.Cadastros.Frm_CadViagem;
+import View.Consulta.Frm_ConsRotas;
+import View.Consulta.Frm_ConsViagens;
+import View.Relatorios.Frm_RelFaturamento;
 import java.awt.Event;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,15 +77,15 @@ public class Frm_Principal extends javax.swing.JFrame {
         Menu_barra = new javax.swing.JMenuBar();
         menu_cadastros = new javax.swing.JMenu();
         item_cadCliente = new javax.swing.JMenuItem();
-        item_cadCliente1 = new javax.swing.JMenuItem();
-        item_cadLançamentoCaixa = new javax.swing.JMenuItem();
-        item_produto = new javax.swing.JMenuItem();
-        item_usuario = new javax.swing.JMenuItem();
+        item_cadCorrida = new javax.swing.JMenuItem();
+        item_cadMotorista = new javax.swing.JMenuItem();
+        item_cadViagens = new javax.swing.JMenuItem();
+        item_cadUsuario = new javax.swing.JMenuItem();
         menu_consulta = new javax.swing.JMenu();
-        item_contasReceber = new javax.swing.JMenuItem();
-        item_contasReceber1 = new javax.swing.JMenuItem();
+        item_consCorridas = new javax.swing.JMenuItem();
+        item_consPrecoViagens = new javax.swing.JMenuItem();
         menu_relatorios = new javax.swing.JMenu();
-        item_relCaixaPorPeriodo = new javax.swing.JMenuItem();
+        item_retFaturamentoPorPeriodo = new javax.swing.JMenuItem();
         menu_utilitarios = new javax.swing.JMenu();
         item_backup = new javax.swing.JMenuItem();
 
@@ -364,69 +370,69 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         menu_cadastros.add(item_cadCliente);
 
-        item_cadCliente1.setText("Corrida");
-        item_cadCliente1.addActionListener(new java.awt.event.ActionListener() {
+        item_cadCorrida.setText("Corrida");
+        item_cadCorrida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_cadCliente1ActionPerformed(evt);
+                item_cadCorridaActionPerformed(evt);
             }
         });
-        menu_cadastros.add(item_cadCliente1);
+        menu_cadastros.add(item_cadCorrida);
 
-        item_cadLançamentoCaixa.setText("Motorista");
-        item_cadLançamentoCaixa.addActionListener(new java.awt.event.ActionListener() {
+        item_cadMotorista.setText("Motorista");
+        item_cadMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_cadLançamentoCaixaActionPerformed(evt);
+                item_cadMotoristaActionPerformed(evt);
             }
         });
-        menu_cadastros.add(item_cadLançamentoCaixa);
+        menu_cadastros.add(item_cadMotorista);
 
-        item_produto.setText("Viagens");
-        item_produto.addActionListener(new java.awt.event.ActionListener() {
+        item_cadViagens.setText("Viagens");
+        item_cadViagens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_produtoActionPerformed(evt);
+                item_cadViagensActionPerformed(evt);
             }
         });
-        menu_cadastros.add(item_produto);
+        menu_cadastros.add(item_cadViagens);
 
-        item_usuario.setText("Usuário");
-        item_usuario.addActionListener(new java.awt.event.ActionListener() {
+        item_cadUsuario.setText("Usuário");
+        item_cadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_usuarioActionPerformed(evt);
+                item_cadUsuarioActionPerformed(evt);
             }
         });
-        menu_cadastros.add(item_usuario);
+        menu_cadastros.add(item_cadUsuario);
 
         Menu_barra.add(menu_cadastros);
 
         menu_consulta.setText("Consulta");
 
-        item_contasReceber.setText("Lista de Corridas");
-        item_contasReceber.addActionListener(new java.awt.event.ActionListener() {
+        item_consCorridas.setText("Lista de Corridas");
+        item_consCorridas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_contasReceberActionPerformed(evt);
+                item_consCorridasActionPerformed(evt);
             }
         });
-        menu_consulta.add(item_contasReceber);
+        menu_consulta.add(item_consCorridas);
 
-        item_contasReceber1.setText("Lista preço de viagens");
-        item_contasReceber1.addActionListener(new java.awt.event.ActionListener() {
+        item_consPrecoViagens.setText("Lista preço de viagens");
+        item_consPrecoViagens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_contasReceber1ActionPerformed(evt);
+                item_consPrecoViagensActionPerformed(evt);
             }
         });
-        menu_consulta.add(item_contasReceber1);
+        menu_consulta.add(item_consPrecoViagens);
 
         Menu_barra.add(menu_consulta);
 
         menu_relatorios.setText("Relatorios");
 
-        item_relCaixaPorPeriodo.setText("Faturamento por período");
-        item_relCaixaPorPeriodo.addActionListener(new java.awt.event.ActionListener() {
+        item_retFaturamentoPorPeriodo.setText("Faturamento por período");
+        item_retFaturamentoPorPeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_relCaixaPorPeriodoActionPerformed(evt);
+                item_retFaturamentoPorPeriodoActionPerformed(evt);
             }
         });
-        menu_relatorios.add(item_relCaixaPorPeriodo);
+        menu_relatorios.add(item_retFaturamentoPorPeriodo);
 
         Menu_barra.add(menu_relatorios);
 
@@ -468,31 +474,47 @@ public class Frm_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyPressed
 
-    private void item_relCaixaPorPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_relCaixaPorPeriodoActionPerformed
-    }//GEN-LAST:event_item_relCaixaPorPeriodoActionPerformed
+    private void item_retFaturamentoPorPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_retFaturamentoPorPeriodoActionPerformed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_RelFaturamento f = new Frm_RelFaturamento();
+    }//GEN-LAST:event_item_retFaturamentoPorPeriodoActionPerformed
 
     private void atalhoCadClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoCadClientesMousePressed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_CadCliente f = new Frm_CadCliente();
     }//GEN-LAST:event_atalhoCadClientesMousePressed
 
     private void item_cadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadClienteActionPerformed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_CadCliente f = new Frm_CadCliente();
     }//GEN-LAST:event_item_cadClienteActionPerformed
 
-    private void item_cadLançamentoCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadLançamentoCaixaActionPerformed
-    }//GEN-LAST:event_item_cadLançamentoCaixaActionPerformed
+    private void item_cadMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadMotoristaActionPerformed
+        Frm_CadMotorista f = new Frm_CadMotorista();
+    }//GEN-LAST:event_item_cadMotoristaActionPerformed
 
-    private void item_produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_produtoActionPerformed
-    }//GEN-LAST:event_item_produtoActionPerformed
+    private void item_cadViagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadViagensActionPerformed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_CadViagem f = new Frm_CadViagem();
+    }//GEN-LAST:event_item_cadViagensActionPerformed
 
-    private void item_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_usuarioActionPerformed
-    }//GEN-LAST:event_item_usuarioActionPerformed
+    private void item_cadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadUsuarioActionPerformed
+        Frm_CadUsuario f = new Frm_CadUsuario();
+    }//GEN-LAST:event_item_cadUsuarioActionPerformed
 
     private void atalhoEmissaoContratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoEmissaoContratoMousePressed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_CadCorrida f= new Frm_CadCorrida();
     }//GEN-LAST:event_atalhoEmissaoContratoMousePressed
 
     private void atalhoConsRetDevMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoConsRetDevMousePressed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_ConsRotas f= new Frm_ConsRotas();
     }//GEN-LAST:event_atalhoConsRetDevMousePressed
 
     private void atalhoLancCaixaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoLancCaixaMousePressed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_RelFaturamento f = new Frm_RelFaturamento();
     }//GEN-LAST:event_atalhoLancCaixaMousePressed
 
     private void item_backupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_backupActionPerformed
@@ -506,17 +528,25 @@ public class Frm_Principal extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_item_backupActionPerformed
 
-    private void item_contasReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_contasReceberActionPerformed
-    }//GEN-LAST:event_item_contasReceberActionPerformed
+    private void item_consCorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_consCorridasActionPerformed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_ConsRotas f = new Frm_ConsRotas();
+    }//GEN-LAST:event_item_consCorridasActionPerformed
 
     private void atalhoLancCaixa1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoLancCaixa1MousePressed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_ConsViagens f = new Frm_ConsViagens();
     }//GEN-LAST:event_atalhoLancCaixa1MousePressed
 
-    private void item_cadCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadCliente1ActionPerformed
-    }//GEN-LAST:event_item_cadCliente1ActionPerformed
+    private void item_cadCorridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadCorridaActionPerformed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_CadCorrida f = new Frm_CadCorrida();
+    }//GEN-LAST:event_item_cadCorridaActionPerformed
 
-    private void item_contasReceber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_contasReceber1ActionPerformed
-    }//GEN-LAST:event_item_contasReceber1ActionPerformed
+    private void item_consPrecoViagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_consPrecoViagensActionPerformed
+        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
+//        Frm_ConsViagens f = new Frm_ConsViagens();
+    }//GEN-LAST:event_item_consPrecoViagensActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -597,13 +627,13 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel atalhoLancCaixa1;
     private javax.swing.JMenuItem item_backup;
     private javax.swing.JMenuItem item_cadCliente;
-    private javax.swing.JMenuItem item_cadCliente1;
-    private javax.swing.JMenuItem item_cadLançamentoCaixa;
-    private javax.swing.JMenuItem item_contasReceber;
-    private javax.swing.JMenuItem item_contasReceber1;
-    private javax.swing.JMenuItem item_produto;
-    private javax.swing.JMenuItem item_relCaixaPorPeriodo;
-    private javax.swing.JMenuItem item_usuario;
+    private javax.swing.JMenuItem item_cadCorrida;
+    private javax.swing.JMenuItem item_cadMotorista;
+    private javax.swing.JMenuItem item_cadUsuario;
+    private javax.swing.JMenuItem item_cadViagens;
+    private javax.swing.JMenuItem item_consCorridas;
+    private javax.swing.JMenuItem item_consPrecoViagens;
+    private javax.swing.JMenuItem item_retFaturamentoPorPeriodo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

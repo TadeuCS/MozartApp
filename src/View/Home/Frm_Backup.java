@@ -1,11 +1,9 @@
-package View.Home;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package View.Home;
 
 import Controller.ValidadeDAO;
 import Model.Validade;
@@ -17,6 +15,8 @@ import java.awt.Event;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import javax.persistence.NoResultException;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -309,17 +309,25 @@ public class Frm_Backup extends javax.swing.JFrame {
             props = new PropertiesManager();
             validadeDAO = new ValidadeDAO();
             validade = new Validade();
+            validade = validadeDAO.getValidade();
+            validade.setDataValidade(Data.getDataByTexto(txt_validade.getText(), "dd/MM/yyyy"));
+            validadeDAO.altera(validade);
+            JOptionPane.showMessageDialog(null, "Informações gravadas com sucesso!");
+        } catch (NoResultException no) {
+            validade = new Validade();
+            validade.setDataValidade(Data.getDataByTexto(txt_validade.getText(), "dd/MM/yyyy"));
+            validade.setStatus("DESBLOQUEADO");
+            validadeDAO.altera(validade);
+            JOptionPane.showMessageDialog(null, "Informações gravadas com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar as informações!\n" + e);
+        } finally {
             props.altera("ip", txt_servidor.getText());
             props.altera("dump", txt_dump.getText());
             props.altera("banco", txt_banco.getText());
             props.altera("usuario", txt_usuario.getText());
             props.altera("senha", txt_senha.getText());
-            validade = validadeDAO.getValidade();
-            validade.setDataValidade(Data.getDataByTexto(txt_validade.getText(), "dd/MM/yyyy"));
-            validadeDAO.altera(validade);
-            JOptionPane.showMessageDialog(null, "Informações gravadas com sucesso!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar as informações!\n" + e);
+            dispose();
         }
     }//GEN-LAST:event_btn_gravarActionPerformed
 
@@ -440,7 +448,11 @@ public class Frm_Backup extends javax.swing.JFrame {
         txt_dump.setText(props.ler("dump"));
         txt_destino.setText(props.ler("destinoBackup"));
         validadeDAO = new ValidadeDAO();
+        try{
         txt_validade.setText(Data.getDataByDate(validadeDAO.getValidade().getDataValidade(), "dd/MM/yyyy"));
+        }catch(NoResultException e){
+            validade=new Validade();
+        }
     }
 
     private void validaCampos() {

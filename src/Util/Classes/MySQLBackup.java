@@ -28,7 +28,7 @@ public class MySQLBackup {
                 "--result-file=" + destino + nomeBanco+" "+Data.getData("dd-MM-yyyy") + ".sql");
         try {
             pb.start();
-            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.");
+            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso no diretório:\n"+destino);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao realizar o backup do banco" + nomeBanco + "!\n\n" + e);
         }

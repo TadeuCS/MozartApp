@@ -1,7 +1,5 @@
 package View.Home;
 
-
-
 import Controller.UsuarioDAO;
 import Controller.ValidadeDAO;
 import Model.Usuario;
@@ -236,6 +234,10 @@ public class Frm_Login extends javax.swing.JFrame {
     private void txt_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_senhaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btn_entrar.doClick();
+        } else {
+            if (evt.getKeyCode() == KeyEvent.VK_UP) {
+                txt_usuario.requestFocus();
+            }
         }
     }//GEN-LAST:event_txt_senhaKeyPressed
 
@@ -377,7 +379,6 @@ public class Frm_Login extends javax.swing.JFrame {
     private void valida() {
         if ((!txt_usuario.getText().trim().isEmpty() && txt_usuario.getText().toUpperCase().equals("ADMIN") == true)
                 && (!txt_senha.getText().isEmpty() && Criptografia.criptografar(txt_senha.getText()).equals("80177534a0c99a7e3645b52f2027a48b") == true)) {
-//            Frm_Conexao f = new Frm_Conexao();
             Frm_Backup f = new Frm_Backup();
         } else {
             JOptionPane.showMessageDialog(null, "Você não tem permissão de alterar as configurações de conexão!");
@@ -404,14 +405,22 @@ public class Frm_Login extends javax.swing.JFrame {
     private boolean verificaValidade(Date dataAtual) {
         Validade validade = new Validade();
         validadeDAO = new ValidadeDAO();
+        boolean valido;
+        try {
         validade = validadeDAO.getValidade();
+        valido=true;
+        } catch (NoResultException e) {
+            JOptionPane.showMessageDialog(null, "Sistema não conseguiu localizar o prazo de validade!");
+            valido=false;
+        }
+        if(valido==true){
         if (validade.getStatus().equals("DESBLOQUEADO") == true) {
             if (Data.comparaDatas(dataAtual, validade.getDataValidade()) == true) {
                 int diferenca = Data.getDiferencaEntreDatas(
                         Data.getDataByDate(dataAtual, "dd/MM/yyyy"),
                         Data.getDataByDate(validade.getDataValidade(), "dd/MM/yyyy"));
                 if (diferenca <= 10) {
-                    JOptionPane.showMessageDialog(null, "Sua licença de avaliação expira em "+diferenca+" dias!");
+                    JOptionPane.showMessageDialog(null, "Sua licença de avaliação expira em " + diferenca + " dias!");
                 }
                 return true;
             } else {
@@ -432,6 +441,9 @@ public class Frm_Login extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Código inválido!");
             }
+            return false;
+        }
+        }else{
             return false;
         }
     }

@@ -17,36 +17,36 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadClienteActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="item_cadCliente1">
+            <MenuItem class="javax.swing.JMenuItem" name="item_cadCorrida">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Corrida"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadCliente1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadCorridaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="item_cadLan&#xe7;amentoCaixa">
+            <MenuItem class="javax.swing.JMenuItem" name="item_cadMotorista">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Motorista"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadLan&#xe7;amentoCaixaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadMotoristaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="item_produto">
+            <MenuItem class="javax.swing.JMenuItem" name="item_cadViagens">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Viagens"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_produtoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadViagensActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="item_usuario">
+            <MenuItem class="javax.swing.JMenuItem" name="item_cadUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_usuarioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cadUsuarioActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -56,20 +56,20 @@
             <Property name="text" type="java.lang.String" value="Consulta"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="item_contasReceber">
+            <MenuItem class="javax.swing.JMenuItem" name="item_consCorridas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista de Corridas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_contasReceberActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_consCorridasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="item_contasReceber1">
+            <MenuItem class="javax.swing.JMenuItem" name="item_consPrecoViagens">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista pre&#xe7;o de viagens"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_contasReceber1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_consPrecoViagensActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -79,12 +79,12 @@
             <Property name="text" type="java.lang.String" value="Relatorios"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="item_relCaixaPorPeriodo">
+            <MenuItem class="javax.swing.JMenuItem" name="item_retFaturamentoPorPeriodo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Faturamento por per&#xed;odo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_relCaixaPorPeriodoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_retFaturamentoPorPeriodoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

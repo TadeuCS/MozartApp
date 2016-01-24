@@ -4,10 +4,12 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Cadastro de Cliente"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
+    <SyntheticProperty name="generateSize" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -24,17 +26,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnl_fundo2" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnl_fundo" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnl_fundo2" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnl_fundo" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="pnl_fundo2">
+    <Container class="javax.swing.JPanel" name="pnl_fundo">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -42,9 +44,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnl_pesquisa2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnl_pesquisa" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnl_botoes" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnl_dados" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -54,17 +56,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnl_dados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="pnl_pesquisa2" max="32767" attributes="0"/>
+                  <Component id="pnl_pesquisa" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnl_botoes" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pnl_pesquisa2">
+        <Container class="javax.swing.JPanel" name="pnl_pesquisa">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -170,7 +172,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel5">
+        <Container class="javax.swing.JPanel" name="pnl_botoes">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -222,7 +224,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel7">
+        <Container class="javax.swing.JPanel" name="pnl_dados">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -337,9 +339,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel4" max="32767" attributes="0"/>
-                              <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="pnl_ultCorrida" max="32767" attributes="0"/>
+                              <Component id="pnl_dadosPrincipais" alignment="0" max="32767" attributes="0"/>
+                              <Component id="pnl_principalEndereco" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -349,18 +351,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnl_dadosPrincipais" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnl_principalEndereco" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnl_ultCorrida" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="jPanel1">
+                <Container class="javax.swing.JPanel" name="pnl_principalEndereco">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -381,18 +383,18 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txt_endereco" max="32767" attributes="0"/>
+                                      <Component id="txt_enderecoDestino" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txt_numero" min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Component id="txt_numeroDestino" min="-2" pref="67" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txt_bairro" min="-2" pref="341" max="-2" attributes="0"/>
+                                      <Component id="txt_bairroDestino" min="-2" pref="341" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cbx_cidades" max="32767" attributes="0"/>
+                                      <Component id="cbx_cidadesDestino" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -406,19 +408,19 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_numero" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_numeroDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_endereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_enderecoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_bairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_bairroDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbx_cidades" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbx_cidadesDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -431,21 +433,21 @@
                         <Property name="text" type="java.lang.String" value="Endere&#xe7;o *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_endereco">
+                    <Component class="javax.swing.JTextField" name="txt_enderecoDestino">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel14">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Bairro *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_bairro">
+                    <Component class="javax.swing.JTextField" name="txt_bairroDestino">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cidade *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cbx_cidades">
+                    <Component class="javax.swing.JComboBox" name="cbx_cidadesDestino">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
@@ -457,11 +459,11 @@
                         <Property name="text" type="java.lang.String" value="Numero *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_numero">
+                    <Component class="javax.swing.JTextField" name="txt_numeroDestino">
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel4">
+                <Container class="javax.swing.JPanel" name="pnl_ultCorrida">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -482,18 +484,18 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txt_endereco1" max="32767" attributes="0"/>
+                                      <Component id="txt_enderecoUltCorrida" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txt_numero1" min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Component id="txt_numeroUltCorrida" min="-2" pref="67" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txt_bairro1" min="-2" pref="341" max="-2" attributes="0"/>
+                                      <Component id="txt_bairroUltCorrida" min="-2" pref="341" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cbx_cidades1" max="32767" attributes="0"/>
+                                      <Component id="cbx_cidadesUltCorrida" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -507,19 +509,19 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_numero1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_numeroUltCorrida" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_endereco1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_enderecoUltCorrida" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_bairro1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_bairroUltCorrida" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbx_cidades1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbx_cidadesUltCorrida" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -532,21 +534,21 @@
                         <Property name="text" type="java.lang.String" value="Endere&#xe7;o *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_endereco1">
+                    <Component class="javax.swing.JTextField" name="txt_enderecoUltCorrida">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Bairro *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_bairro1">
+                    <Component class="javax.swing.JTextField" name="txt_bairroUltCorrida">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel18">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cidade *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cbx_cidades1">
+                    <Component class="javax.swing.JComboBox" name="cbx_cidadesUltCorrida">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
@@ -558,11 +560,11 @@
                         <Property name="text" type="java.lang.String" value="Numero *:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_numero1">
+                    <Component class="javax.swing.JTextField" name="txt_numeroUltCorrida">
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel6">
+                <Container class="javax.swing.JPanel" name="pnl_dadosPrincipais">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -582,11 +584,11 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txt_telefone" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="txt_telefone1" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txt_celular" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="txt_telefone2" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -594,7 +596,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txt_numero2" min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="txt_qtdePassageiros" min="-2" pref="59" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -605,14 +607,14 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_telefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_telefone1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_celular" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_telefone2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_nome" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_codigo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_numero2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_qtdePassageiros" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                           </Group>
@@ -636,7 +638,7 @@
                         <Property name="text" type="java.lang.String" value="Telefone:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="txt_telefone">
+                    <Component class="javax.swing.JFormattedTextField" name="txt_telefone1">
                       <Properties>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="(##) ####-####" subtype="-1" type="5"/>
@@ -649,7 +651,7 @@
                         <Property name="text" type="java.lang.String" value="Telefone2:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="txt_celular">
+                    <Component class="javax.swing.JFormattedTextField" name="txt_telefone2">
                       <Properties>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="(##) ####-####" subtype="-1" type="5"/>
@@ -672,7 +674,7 @@
                         <Property name="text" type="java.lang.String" value="Passageiros*:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_numero2">
+                    <Component class="javax.swing.JTextField" name="txt_qtdePassageiros">
                     </Component>
                   </SubComponents>
                 </Container>

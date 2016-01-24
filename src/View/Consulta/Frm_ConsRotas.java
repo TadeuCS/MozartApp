@@ -5,6 +5,8 @@
  */
 package View.Consulta;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Tadeu
@@ -16,6 +18,8 @@ public class Frm_ConsRotas extends javax.swing.JFrame {
      */
     public Frm_ConsRotas() {
         initComponents();
+        setVisible(true);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -160,6 +164,7 @@ public class Frm_ConsRotas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Corridas");
+        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1041,6 +1046,7 @@ public class Frm_ConsRotas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -1054,7 +1060,7 @@ public class Frm_ConsRotas extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -1073,7 +1079,7 @@ public class Frm_ConsRotas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm_ConsRotas().setVisible(true);
+//                new Frm_ConsRotas().setVisible(true);
             }
         });
     }
