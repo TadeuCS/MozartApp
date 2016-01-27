@@ -5,6 +5,7 @@
  */
 package Util.Classes;
 
+import java.text.NumberFormat;
 import javax.swing.text.*;
 
 public class MoneyDocument extends PlainDocument {
@@ -62,5 +63,11 @@ public class MoneyDocument extends PlainDocument {
         super.remove(0, getLength());
         insertString(0, texto, null);
     }
+    public static String getStringByDouble(double valor) {
+        return NumberFormat.getCurrencyInstance().format(valor);
+    }
 
+    public static double getMoneyByString(String valor) {
+        return Double.parseDouble(valor.replace("R$ ", "").replace(".", "").replace(",", "."));
+    }
 }

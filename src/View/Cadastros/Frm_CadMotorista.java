@@ -46,7 +46,6 @@ public class Frm_CadMotorista extends javax.swing.JFrame {
     }
 
     private void setEnabledFields(boolean b) {
-        txt_codigo.setEnabled(b);
         txt_nome.setEnabled(b);
         txt_placa.setEnabled(b);
         txt_telParticular.setEnabled(b);
@@ -724,6 +723,7 @@ public class Frm_CadMotorista extends javax.swing.JFrame {
             TableConfig.getModel(tb_motoristas).removeRow(tb_motoristas.getSelectedRow());
             JOptionPane.showMessageDialog(null, "Motorista removido com sucesso!\n");
             setEnabledButtons(true);
+            limparCampos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao remover o Motorista!\n" + e);
         }

@@ -5,11 +5,12 @@
     <class>Model.Corrida</class>
     <class>Model.Endereco</class>
     <class>Model.Viagem</class>
-    <class>Model.Cidade</class>
     <class>Model.Cliente</class>
     <class>Model.Motorista</class>
     <class>Model.Usuario</class>
     <class>Model.Validade</class>
+    <class>Model.Validade_1</class>
+    <class>Model.Cidade</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TAXIDB?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

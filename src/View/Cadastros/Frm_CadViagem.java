@@ -5,18 +5,59 @@
  */
 package View.Cadastros;
 
+import Controller.CidadesDAO;
+import Controller.MotoristaDAO;
+import Controller.ViagensDAO;
+import Model.Cidade;
+import Model.Viagem;
+import Util.Classes.IntegerDocument;
+import Util.Classes.MoneyDocument;
+import Util.Classes.TableConfig;
+import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tadeu
  */
 public class Frm_CadViagem extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Frm_CadViagem
-     */
+    Viagem viagem;
+    ViagensDAO viagensDAO;
+    CidadesDAO cidadesDAO;
+
     public Frm_CadViagem() {
         initComponents();
         setVisible(true);
+        carregarCidades();
+        setEnabledButtons(true);
+        listaViagens();
+    }
+
+    private void setEnabledFields(boolean b) {
+        cbx_cidades.setEnabled(b);
+        txt_distancia.setEnabled(b);
+        txt_valor.setEnabled(b);
+        txt_filtro.setEnabled(!b);
+    }
+
+    private void setEnabledButtons(boolean b) {
+        btn_novo.setEnabled(b);
+        btn_editar.setEnabled(b);
+        btn_apagar.setEnabled(b);
+        btn_salvar.setEnabled(!b);
+        btn_cancelar.setEnabled(!b);
+        tb_viagens.setEnabled(b);
+        btn_novo.requestFocus();
+        setEnabledFields(!b);
+    }
+
+    private void limparCampos() {
+        txt_codigo.setText(null);
+        cbx_cidades.setSelectedIndex(0);
+        txt_valor.setText(null);
+        txt_distancia.setText(null);
+        txt_filtro.setText(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,21 +67,22 @@ public class Frm_CadViagem extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_codigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_distancia = new javax.swing.JTextField();
+        txt_valor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        cbx_cidades = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_novo = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
         pnl_pesquisa2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txt_filtro = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_clientes = new javax.swing.JTable();
+        tb_viagens = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btn_editar = new javax.swing.JButton();
         btn_apagar = new javax.swing.JButton();
@@ -53,13 +95,36 @@ public class Frm_CadViagem extends javax.swing.JFrame {
 
         jLabel1.setText("Código:");
 
-        jTextField1.setEnabled(false);
+        txt_codigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_codigo.setEnabled(false);
 
         jLabel2.setText("Cidade *:");
 
         jLabel3.setText("Distancia Km *:");
 
+        txt_distancia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txt_valor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txt_valor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_valorFocusLost(evt);
+            }
+        });
+
         jLabel4.setText("Valor *:");
+
+        cbx_cidades.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbx_cidadesFocusLost(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/cadastro.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -69,51 +134,70 @@ public class Frm_CadViagem extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_distancia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11))
+                        .addComponent(txt_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbx_cidades, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_codigo)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbx_cidades))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txt_distancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/adicionar.png"))); // NOI18N
-        jButton1.setText("Novo");
+        btn_novo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/adicionar.png"))); // NOI18N
+        btn_novo.setText("Novo");
+        btn_novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_novoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/salvar.png"))); // NOI18N
-        jButton2.setText("Salvar");
+        btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/salvar.png"))); // NOI18N
+        btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/cancelar.png"))); // NOI18N
-        jButton3.setText("Cancelar");
+        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/cancelar.png"))); // NOI18N
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         pnl_pesquisa2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -125,7 +209,7 @@ public class Frm_CadViagem extends javax.swing.JFrame {
             }
         });
 
-        tb_clientes.setModel(new javax.swing.table.DefaultTableModel(
+        tb_viagens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -141,17 +225,17 @@ public class Frm_CadViagem extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tb_clientes.getTableHeader().setReorderingAllowed(false);
-        tb_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tb_viagens.getTableHeader().setReorderingAllowed(false);
+        tb_viagens.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tb_clientesMousePressed(evt);
+                tb_viagensMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(tb_clientes);
-        if (tb_clientes.getColumnModel().getColumnCount() > 0) {
-            tb_clientes.getColumnModel().getColumn(0).setMinWidth(65);
-            tb_clientes.getColumnModel().getColumn(0).setPreferredWidth(65);
-            tb_clientes.getColumnModel().getColumn(0).setMaxWidth(65);
+        jScrollPane1.setViewportView(tb_viagens);
+        if (tb_viagens.getColumnModel().getColumnCount() > 0) {
+            tb_viagens.getColumnModel().getColumn(0).setMinWidth(65);
+            tb_viagens.getColumnModel().getColumn(0).setPreferredWidth(65);
+            tb_viagens.getColumnModel().getColumn(0).setMaxWidth(65);
         }
 
         javax.swing.GroupLayout pnl_pesquisa2Layout = new javax.swing.GroupLayout(pnl_pesquisa2);
@@ -177,7 +261,7 @@ public class Frm_CadViagem extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txt_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -227,11 +311,11 @@ public class Frm_CadViagem extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnl_pesquisa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -243,9 +327,9 @@ public class Frm_CadViagem extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_novo)
+                    .addComponent(btn_salvar)
+                    .addComponent(btn_cancelar))
                 .addGap(18, 18, 18)
                 .addComponent(pnl_pesquisa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,33 +355,85 @@ public class Frm_CadViagem extends javax.swing.JFrame {
         //        TableConfig.filtrar(tb_clientes, txt_filtro);
     }//GEN-LAST:event_txt_filtroKeyReleased
 
-    private void tb_clientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_clientesMousePressed
-        if (tb_clientes.getSelectedRowCount() == 1) {
-            //            clienteDAO = new ClienteDAO();
-            //            setClienteNaTela(clienteDAO.buscarbyCodigo(Integer.parseInt(tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 0).toString())));
+    private void tb_viagensMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_viagensMousePressed
+        if (tb_viagens.getSelectedRowCount() == 1) {
+            try {
+                viagensDAO = new ViagensDAO();
+                carregaDadosNaTela(viagensDAO.buscar(
+                        Integer.parseInt(tb_viagens.getValueAt(tb_viagens.getSelectedRow(), 0).toString()))
+                );
+                viagem = viagensDAO.buscar(Integer.parseInt(txt_codigo.getText()));
+            } catch (NoResultException e) {
+                JOptionPane.showMessageDialog(null, "Motorista não encontrado!\n");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao carregar os dados do Motorista!\n" + e);
+            }
+
         }
-    }//GEN-LAST:event_tb_clientesMousePressed
+    }//GEN-LAST:event_tb_viagensMousePressed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-        //        if (tb_clientes.getSelectedRowCount() != 1) {
-            //            JOptionPane.showMessageDialog(null, "Selecione 1 linha de cada vez para Editar!");
-            //        } else {
-            //            setEnabledButtons(false);
-            //            clienteDAO = new ClienteDAO();
-            //            setClienteNaTela(clienteDAO.buscarbyCodigo(Integer.parseInt(tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 0).toString())));
-            //            txt_nome.requestFocus();
-            //        }
+        if (tb_viagens.getSelectedRowCount() != 1) {
+            JOptionPane.showMessageDialog(null, "Selecione 1 linha de cada vez para Editar!");
+        } else {
+            setEnabledButtons(false);
+            cbx_cidades.requestFocus();
+        }
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_apagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_apagarActionPerformed
-        //        if (tb_clientes.getSelectedRowCount() != 1) {
-            //            JOptionPane.showMessageDialog(null, "Selecione 1 linha de cada vez para Apagar!");
-            //        } else {
-            //            if (JOptionPane.showConfirmDialog(null, "Deseja realmente apagar o Cliente " + tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 1).toString(), "", 0, 0) == 0) {
-                //                removeCliente(Integer.parseInt(tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 0).toString()));
-                //            }
-            //        }
+        if (tb_viagens.getSelectedRowCount() != 1) {
+            JOptionPane.showMessageDialog(null, "Selecione 1 linha de cada vez para Apagar!");
+        } else {
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente apagar a Viagem " + tb_viagens.getValueAt(tb_viagens.getSelectedRow(), 1).toString(), "", 0, 0) == 0) {
+                removeViagem(tb_viagens.getValueAt(tb_viagens.getSelectedRow(), 0).toString());
+            }
+        }
     }//GEN-LAST:event_btn_apagarActionPerformed
+
+    private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
+        setEnabledButtons(false);
+        limparCampos();
+        viagem = new Viagem();
+        cbx_cidades.requestFocus();
+    }//GEN-LAST:event_btn_novoActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        setEnabledButtons(true);
+        limparCampos();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void txt_valorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorFocusLost
+        txt_valor.setText(MoneyDocument.getStringByDouble(MoneyDocument.getMoneyByString(txt_valor.getText())));
+        btn_salvar.requestFocus();
+    }//GEN-LAST:event_txt_valorFocusLost
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        if (cbx_cidades.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Cidade selecionada inválida!");
+            cbx_cidades.requestFocus();
+        } else {
+            if (txt_distancia.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Distância inválida!");
+                txt_distancia.requestFocus();
+            } else {
+                if (txt_valor.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Valor inválido!");
+                    txt_valor.requestFocus();
+                } else {
+                    salvar();
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void cbx_cidadesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbx_cidadesFocusLost
+        txt_distancia.requestFocus();
+    }//GEN-LAST:event_cbx_cidadesFocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Frm_CadCidade f = new Frm_CadCidade();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,10 +472,12 @@ public class Frm_CadViagem extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_apagar;
+    private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_novo;
+    private javax.swing.JButton btn_salvar;
+    private javax.swing.JComboBox cbx_cidades;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -349,12 +487,80 @@ public class Frm_CadViagem extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel pnl_pesquisa2;
-    private javax.swing.JTable tb_clientes;
+    private javax.swing.JTable tb_viagens;
+    private javax.swing.JTextField txt_codigo;
+    private javax.swing.JTextField txt_distancia;
     private javax.swing.JTextField txt_filtro;
+    private javax.swing.JTextField txt_valor;
     // End of variables declaration//GEN-END:variables
+
+    private void carregaDadosNaTela(Viagem viagem) {
+        try {
+            txt_codigo.setText(viagem.getCodviagem().toString());
+            cbx_cidades.setSelectedItem(viagem.getCodcidade().getDescricao());
+            txt_distancia.setText(viagem.getDistancia() + "");
+            txt_valor.setText(MoneyDocument.getStringByDouble(viagem.getValor()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar os dados do motorista!\n" + e);
+        }
+    }
+
+    private void carregarCidades() {
+        try {
+            cidadesDAO = new CidadesDAO();
+            cbx_cidades.removeAllItems();
+            for (Cidade cidade : cidadesDAO.listar()) {
+                cbx_cidades.addItem(cidade.getDescricao());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar as cidades!\n" + e);
+        }
+    }
+
+    private void salvar() {
+        try {
+            viagensDAO = new ViagensDAO();
+            cidadesDAO = new CidadesDAO();
+            viagem.setCodcidade(cidadesDAO.buscar(cbx_cidades.getSelectedItem().toString()));
+            viagem.setDistancia(MoneyDocument.getMoneyByString(txt_distancia.getText()));
+            viagem.setValor(MoneyDocument.getMoneyByString(txt_valor.getText()));
+            viagensDAO.salvar(viagem);
+            JOptionPane.showMessageDialog(null, "Viagem salva com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar a viagem!\n" + e);
+        } finally {
+            limparCampos();
+            setEnabledButtons(true);
+            listaViagens();
+        }
+    }
+
+    private void listaViagens() {
+        try {
+            viagensDAO = new ViagensDAO();
+            TableConfig.limpaTabela(tb_viagens);
+            for (Viagem viagem : viagensDAO.listar()) {
+                String[] linha = new String[]{
+                    viagem.getCodviagem().toString(),
+                    viagem.getCodcidade().getDescricao()};
+                TableConfig.getModel(tb_viagens).addRow(linha);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar os Viagens!\n" + e);
+        }
+    }
+
+    private void removeViagem(String codigo) {
+         try {
+            viagensDAO = new ViagensDAO();
+            viagensDAO.remover(viagensDAO.buscar(Integer.parseInt(codigo)));
+            TableConfig.getModel(tb_viagens).removeRow(tb_viagens.getSelectedRow());
+            JOptionPane.showMessageDialog(null, "Viagem removido com sucesso!\n");
+            setEnabledButtons(true);
+            limparCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao remover o Motorista!\n" + e);
+        }
+    }
 }

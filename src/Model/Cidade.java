@@ -6,9 +6,7 @@
 package Model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,10 +38,6 @@ public class Cidade implements Serializable {
     @Basic(optional = false)
     @Column(name = "DESCRICAO")
     private String descricao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcidade")
-    private List<Viagem> viagemList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcidade")
-    private List<Endereco> enderecoList;
 
     public Cidade() {
     }
@@ -73,24 +65,6 @@ public class Cidade implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    @XmlTransient
-    public List<Viagem> getViagemList() {
-        return viagemList;
-    }
-
-    public void setViagemList(List<Viagem> viagemList) {
-        this.viagemList = viagemList;
-    }
-
-    @XmlTransient
-    public List<Endereco> getEnderecoList() {
-        return enderecoList;
-    }
-
-    public void setEnderecoList(List<Endereco> enderecoList) {
-        this.enderecoList = enderecoList;
     }
 
     @Override

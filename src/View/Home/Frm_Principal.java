@@ -3,6 +3,7 @@ package View.Home;
 import Util.Classes.Data;
 import Util.Classes.MySQLBackup;
 import Util.Classes.PropertiesManager;
+import View.Cadastros.Frm_CadCidade;
 import View.Cadastros.Frm_CadCliente;
 import View.Cadastros.Frm_CadCorrida;
 import View.Cadastros.Frm_CadMotorista;
@@ -66,7 +67,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         atalhoLancCaixa = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         atalho6 = new javax.swing.JPanel();
-        atalhoLancCaixa1 = new javax.swing.JLabel();
+        atalhoConsPrecoViagens = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         pnl_rodape = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -77,6 +78,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         Menu_barra = new javax.swing.JMenuBar();
         menu_cadastros = new javax.swing.JMenu();
         item_cadCliente = new javax.swing.JMenuItem();
+        item_cadCidade = new javax.swing.JMenuItem();
         item_cadCorrida = new javax.swing.JMenuItem();
         item_cadMotorista = new javax.swing.JMenuItem();
         item_cadViagens = new javax.swing.JMenuItem();
@@ -231,12 +233,12 @@ public class Frm_Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        atalhoLancCaixa1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        atalhoLancCaixa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/consulta.png"))); // NOI18N
-        atalhoLancCaixa1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        atalhoLancCaixa1.addMouseListener(new java.awt.event.MouseAdapter() {
+        atalhoConsPrecoViagens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        atalhoConsPrecoViagens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Img/consulta.png"))); // NOI18N
+        atalhoConsPrecoViagens.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        atalhoConsPrecoViagens.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                atalhoLancCaixa1MousePressed(evt);
+                atalhoConsPrecoViagensMousePressed(evt);
             }
         });
 
@@ -250,7 +252,7 @@ public class Frm_Principal extends javax.swing.JFrame {
             .addGroup(atalho6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(atalho6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(atalhoLancCaixa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(atalhoConsPrecoViagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -258,7 +260,7 @@ public class Frm_Principal extends javax.swing.JFrame {
             atalho6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(atalho6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(atalhoLancCaixa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atalhoConsPrecoViagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addContainerGap())
@@ -356,7 +358,7 @@ public class Frm_Principal extends javax.swing.JFrame {
             pnl_fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_fundoLayout.createSequentialGroup()
                 .addComponent(pnl_atalhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 432, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
                 .addComponent(pnl_rodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -369,6 +371,14 @@ public class Frm_Principal extends javax.swing.JFrame {
             }
         });
         menu_cadastros.add(item_cadCliente);
+
+        item_cadCidade.setText("Cidade");
+        item_cadCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_cadCidadeActionPerformed(evt);
+            }
+        });
+        menu_cadastros.add(item_cadCidade);
 
         item_cadCorrida.setText("Corrida");
         item_cadCorrida.addActionListener(new java.awt.event.ActionListener() {
@@ -494,8 +504,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_item_cadMotoristaActionPerformed
 
     private void item_cadViagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadViagensActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
-//        Frm_CadViagem f = new Frm_CadViagem();
+        Frm_CadViagem f = new Frm_CadViagem();
     }//GEN-LAST:event_item_cadViagensActionPerformed
 
     private void item_cadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadUsuarioActionPerformed
@@ -533,10 +542,9 @@ public class Frm_Principal extends javax.swing.JFrame {
 //        Frm_ConsRotas f = new Frm_ConsRotas();
     }//GEN-LAST:event_item_consCorridasActionPerformed
 
-    private void atalhoLancCaixa1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoLancCaixa1MousePressed
-        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
-//        Frm_ConsViagens f = new Frm_ConsViagens();
-    }//GEN-LAST:event_atalhoLancCaixa1MousePressed
+    private void atalhoConsPrecoViagensMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoConsPrecoViagensMousePressed
+        Frm_ConsViagens f = new Frm_ConsViagens();
+    }//GEN-LAST:event_atalhoConsPrecoViagensMousePressed
 
     private void item_cadCorridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadCorridaActionPerformed
         JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
@@ -547,6 +555,10 @@ public class Frm_Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
 //        Frm_ConsViagens f = new Frm_ConsViagens();
     }//GEN-LAST:event_item_consPrecoViagensActionPerformed
+
+    private void item_cadCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadCidadeActionPerformed
+        Frm_CadCidade f= new Frm_CadCidade();
+    }//GEN-LAST:event_item_cadCidadeActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -621,11 +633,12 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel atalho5;
     private javax.swing.JPanel atalho6;
     private javax.swing.JLabel atalhoCadClientes;
+    private javax.swing.JLabel atalhoConsPrecoViagens;
     private javax.swing.JLabel atalhoConsRetDev;
     private javax.swing.JLabel atalhoEmissaoContrato;
     private javax.swing.JLabel atalhoLancCaixa;
-    private javax.swing.JLabel atalhoLancCaixa1;
     private javax.swing.JMenuItem item_backup;
+    private javax.swing.JMenuItem item_cadCidade;
     private javax.swing.JMenuItem item_cadCliente;
     private javax.swing.JMenuItem item_cadCorrida;
     private javax.swing.JMenuItem item_cadMotorista;
