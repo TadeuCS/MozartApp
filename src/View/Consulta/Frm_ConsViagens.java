@@ -5,7 +5,7 @@
  */
 package View.Consulta;
 
-import Controller.ViagensDAO;
+import Controller.ViagemDAO;
 import Model.Viagem;
 import Util.Classes.MoneyDocument;
 import Util.Classes.TableConfig;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class Frm_ConsViagens extends javax.swing.JFrame {
 
-    ViagensDAO viagensDAO;
+    ViagemDAO viagensDAO;
 
     public Frm_ConsViagens() {
         initComponents();
@@ -27,7 +27,7 @@ public class Frm_ConsViagens extends javax.swing.JFrame {
 
     private void listaViagens() {
         try {
-            viagensDAO = new ViagensDAO();
+            viagensDAO = new ViagemDAO();
             TableConfig.limpaTabela(tb_viagens);
             for (Viagem viagem : viagensDAO.listar()) {
                 String[] linha = new String[]{

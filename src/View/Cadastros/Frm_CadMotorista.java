@@ -5,7 +5,7 @@
  */
 package View.Cadastros;
 
-import Controller.CidadesDAO;
+import Controller.CidadeDAO;
 import Controller.MotoristaDAO;
 import Model.Cidade;
 import Model.Endereco;
@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class Frm_CadMotorista extends javax.swing.JFrame {
 
     MotoristaDAO motoristaDAO;
-    CidadesDAO cidadesDAO;
+    CidadeDAO cidadesDAO;
     Motorista motorista;
 
     public Frm_CadMotorista() {
@@ -731,7 +731,7 @@ public class Frm_CadMotorista extends javax.swing.JFrame {
 
     private void carregaCidades() {
         try {
-            cidadesDAO = new CidadesDAO();
+            cidadesDAO = new CidadeDAO();
             cbx_cidades.removeAllItems();
             for (Cidade cidade : cidadesDAO.listar()) {
                 cbx_cidades.addItem(cidade.getDescricao());
@@ -755,14 +755,14 @@ public class Frm_CadMotorista extends javax.swing.JFrame {
                 endereco.setEndereco(txt_endereco.getText());
                 endereco.setNumero(Integer.parseInt(txt_numero.getText()));
                 endereco.setBairro(txt_bairro.getText());
-                cidadesDAO = new CidadesDAO();
+                cidadesDAO = new CidadeDAO();
                 endereco.setCodcidade(cidadesDAO.buscar(cbx_cidades.getSelectedItem().toString()));
                 motorista.getEnderecoList().add(endereco);
             } else {
                 motorista.getEnderecoList().get(0).setEndereco(txt_endereco.getText());
                 motorista.getEnderecoList().get(0).setNumero(Integer.parseInt(txt_numero.getText()));
                 motorista.getEnderecoList().get(0).setBairro(txt_bairro.getText());
-                cidadesDAO = new CidadesDAO();
+                cidadesDAO = new CidadeDAO();
                 motorista.getEnderecoList().get(0).setCodcidade(cidadesDAO.buscar(cbx_cidades.getSelectedItem().toString()));
             }
             motoristaDAO = new MotoristaDAO();

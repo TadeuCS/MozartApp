@@ -5,7 +5,7 @@
  */
 package View.Cadastros;
 
-import Controller.CidadesDAO;
+import Controller.CidadeDAO;
 import Model.Cidade;
 import Util.Classes.UpperDocument;
 import javax.swing.JOptionPane;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class Frm_CadCidade extends javax.swing.JFrame {
 
     Cidade cidade;
-    CidadesDAO cidadesDAO;
+    CidadeDAO cidadesDAO;
 
     public Frm_CadCidade() {
         initComponents();
@@ -169,7 +169,7 @@ public class Frm_CadCidade extends javax.swing.JFrame {
     private void salvar() {
         try {
             cidade = new Cidade();
-            cidadesDAO = new CidadesDAO();
+            cidadesDAO = new CidadeDAO();
             cidade.setDescricao(txt_cidade.getText());
             cidadesDAO.salvar(cidade);
             JOptionPane.showMessageDialog(null, "Cidade salva com sucesso!");

@@ -5,9 +5,9 @@
  */
 package View.Cadastros;
 
-import Controller.CidadesDAO;
+import Controller.CidadeDAO;
 import Controller.MotoristaDAO;
-import Controller.ViagensDAO;
+import Controller.ViagemDAO;
 import Model.Cidade;
 import Model.Viagem;
 import Util.Classes.IntegerDocument;
@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
 public class Frm_CadViagem extends javax.swing.JFrame {
 
     Viagem viagem;
-    ViagensDAO viagensDAO;
-    CidadesDAO cidadesDAO;
+    ViagemDAO viagensDAO;
+    CidadeDAO cidadesDAO;
 
     public Frm_CadViagem() {
         initComponents();
@@ -358,7 +358,7 @@ public class Frm_CadViagem extends javax.swing.JFrame {
     private void tb_viagensMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_viagensMousePressed
         if (tb_viagens.getSelectedRowCount() == 1) {
             try {
-                viagensDAO = new ViagensDAO();
+                viagensDAO = new ViagemDAO();
                 carregaDadosNaTela(viagensDAO.buscar(
                         Integer.parseInt(tb_viagens.getValueAt(tb_viagens.getSelectedRow(), 0).toString()))
                 );
@@ -508,7 +508,7 @@ public class Frm_CadViagem extends javax.swing.JFrame {
 
     private void carregarCidades() {
         try {
-            cidadesDAO = new CidadesDAO();
+            cidadesDAO = new CidadeDAO();
             cbx_cidades.removeAllItems();
             for (Cidade cidade : cidadesDAO.listar()) {
                 cbx_cidades.addItem(cidade.getDescricao());
@@ -520,8 +520,8 @@ public class Frm_CadViagem extends javax.swing.JFrame {
 
     private void salvar() {
         try {
-            viagensDAO = new ViagensDAO();
-            cidadesDAO = new CidadesDAO();
+            viagensDAO = new ViagemDAO();
+            cidadesDAO = new CidadeDAO();
             viagem.setCodcidade(cidadesDAO.buscar(cbx_cidades.getSelectedItem().toString()));
             viagem.setDistancia(MoneyDocument.getMoneyByString(txt_distancia.getText()));
             viagem.setValor(MoneyDocument.getMoneyByString(txt_valor.getText()));
@@ -538,7 +538,7 @@ public class Frm_CadViagem extends javax.swing.JFrame {
 
     private void listaViagens() {
         try {
-            viagensDAO = new ViagensDAO();
+            viagensDAO = new ViagemDAO();
             TableConfig.limpaTabela(tb_viagens);
             for (Viagem viagem : viagensDAO.listar()) {
                 String[] linha = new String[]{
@@ -553,7 +553,7 @@ public class Frm_CadViagem extends javax.swing.JFrame {
 
     private void removeViagem(String codigo) {
          try {
-            viagensDAO = new ViagensDAO();
+            viagensDAO = new ViagemDAO();
             viagensDAO.remover(viagensDAO.buscar(Integer.parseInt(codigo)));
             TableConfig.getModel(tb_viagens).removeRow(tb_viagens.getSelectedRow());
             JOptionPane.showMessageDialog(null, "Viagem removido com sucesso!\n");

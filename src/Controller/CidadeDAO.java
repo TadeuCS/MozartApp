@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Model.Viagem;
+import Model.Cidade;
 import Util.Classes.Conexao;
 import java.util.List;
 
@@ -13,31 +13,27 @@ import java.util.List;
  *
  * @author Tadeu
  */
-public class ViagensDAO extends Conexao {
-
-    public void salvar(Viagem user) {
+public class CidadeDAO extends Conexao{
+    public void salvar(Cidade cidade){
         em.getTransaction().begin();
-        em.merge(user);
+        em.merge(cidade);
         em.getTransaction().commit();
     }
-
-    public void remover(Viagem motorista) {
+    public void remover(Cidade cidade){
         em.getTransaction().begin();
-        em.remove(motorista);
+        em.remove(cidade);
         em.getTransaction().commit();
     }
-
-    public Viagem buscar(int codigo) {
+    public List<Cidade> listar(){
         em.getTransaction().begin();
-        query = em.createNamedQuery("Viagem.findByCodviagem").setParameter("codviagem", codigo);
-        em.getTransaction().commit();
-        return (Viagem) query.getSingleResult();
-    }
-
-    public List<Viagem> listar() {
-        em.getTransaction().begin();
-        query = em.createNamedQuery("Viagem.findAll");
+        query=em.createNamedQuery("Cidade.findAll");
         em.getTransaction().commit();
         return query.getResultList();
+    }
+    public Cidade buscar(String descricao){
+        em.getTransaction().begin();
+        query=em.createNamedQuery("Cidade.findByDescricao").setParameter("descricao", descricao);
+        em.getTransaction().commit();
+        return (Cidade) query.getSingleResult();
     }
 }

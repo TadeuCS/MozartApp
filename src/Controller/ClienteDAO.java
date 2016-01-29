@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Model.Cidade;
+import Model.Cliente;
 import Util.Classes.Conexao;
 import java.util.List;
 
@@ -13,27 +13,27 @@ import java.util.List;
  *
  * @author Tadeu
  */
-public class CidadesDAO extends Conexao{
-    public void salvar(Cidade cidade){
+public class ClienteDAO extends Conexao{
+    public void salvar(Cliente cliente){
         em.getTransaction().begin();
-        em.merge(cidade);
+        em.merge(cliente);
         em.getTransaction().commit();
     }
-    public void remover(Cidade cidade){
+    public void remover(Cliente cliente){
         em.getTransaction().begin();
-        em.remove(cidade);
+        em.remove(cliente);
         em.getTransaction().commit();
     }
-    public List<Cidade> listar(){
+    public List<Cliente> listar(){
         em.getTransaction().begin();
-        query=em.createNamedQuery("Cidade.findAll");
+        query=em.createNamedQuery("Cliente.findAll");
         em.getTransaction().commit();
         return query.getResultList();
     }
-    public Cidade buscar(String descricao){
+    public Cliente buscar(int codigo){
         em.getTransaction().begin();
-        query=em.createNamedQuery("Cidade.findByDescricao").setParameter("descricao", descricao);
+        query=em.createNamedQuery("Cliente.findByCodcliente").setParameter("codcliente", codigo);
         em.getTransaction().commit();
-        return (Cidade) query.getSingleResult();
+        return (Cliente) query.getSingleResult();
     }
 }
