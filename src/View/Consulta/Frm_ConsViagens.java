@@ -9,6 +9,7 @@ import Controller.ViagemDAO;
 import Model.Viagem;
 import Util.Classes.MoneyDocument;
 import Util.Classes.TableConfig;
+import Util.Classes.UpperDocument;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,7 @@ public class Frm_ConsViagens extends javax.swing.JFrame {
     public Frm_ConsViagens() {
         initComponents();
         setVisible(true);
+        txt_filtro.setDocument(new UpperDocument(255));
         listaViagens();
     }
 
@@ -33,7 +35,7 @@ public class Frm_ConsViagens extends javax.swing.JFrame {
                 String[] linha = new String[]{
                     viagem.getCodviagem().toString(),
                     viagem.getCodcidade().getDescricao(),
-                    MoneyDocument.getStringByDouble(viagem.getDistancia()),
+                    viagem.getDistancia()+" KM",
                     MoneyDocument.getStringByDouble(viagem.getValor())
                 };
                 TableConfig.getModel(tb_viagens).addRow(linha);

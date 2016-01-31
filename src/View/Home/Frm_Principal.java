@@ -490,13 +490,11 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_item_retFaturamentoPorPeriodoActionPerformed
 
     private void atalhoCadClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoCadClientesMousePressed
-        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
-//        Frm_CadCliente f = new Frm_CadCliente();
+        Frm_CadCliente f = new Frm_CadCliente();
     }//GEN-LAST:event_atalhoCadClientesMousePressed
 
     private void item_cadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadClienteActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
-//        Frm_CadCliente f = new Frm_CadCliente();
+        Frm_CadCliente f = new Frm_CadCliente();
     }//GEN-LAST:event_item_cadClienteActionPerformed
 
     private void item_cadMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadMotoristaActionPerformed

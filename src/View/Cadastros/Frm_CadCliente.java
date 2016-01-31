@@ -7,9 +7,9 @@ package View.Cadastros;
 
 import Controller.CidadeDAO;
 import Controller.ClienteDAO;
-import Controller.MotoristaDAO;
 import Model.Cidade;
 import Model.Cliente;
+import Model.Corrida;
 import Util.Classes.IntegerDocument;
 import Util.Classes.TableConfig;
 import Util.Classes.UpperDocument;
@@ -29,7 +29,10 @@ public class Frm_CadCliente extends javax.swing.JFrame {
     public Frm_CadCliente() {
         initComponents();
         setVisible(true);
+        setFieldsCase();
+        setEnabledButtons(true);
         carregaCidade();
+        listaClientes();
     }
 
     private void setFieldsCase() {
@@ -50,14 +53,14 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         txt_telefone2.setEnabled(b);
         txt_nome.setEnabled(b);
         txt_qtdePassageiros.setEnabled(b);
-        txt_enderecoDestino.setEnabled(b);
-        txt_numeroDestino.setEnabled(b);
-        txt_bairroDestino.setEnabled(b);
-        cbx_cidadesDestino.setEnabled(b);
-        txt_enderecoUltCorrida.setEnabled(b);
-        txt_numeroUltCorrida.setEnabled(b);
-        txt_bairroUltCorrida.setEnabled(b);
-        cbx_cidadesUltCorrida.setEnabled(b);
+        txt_enderecoDestino.setEnabled(false);
+        txt_numeroDestino.setEnabled(false);
+        txt_bairroDestino.setEnabled(false);
+        cbx_cidadesDestino.setEnabled(false);
+        txt_enderecoUltCorrida.setEnabled(false);
+        txt_numeroUltCorrida.setEnabled(false);
+        txt_bairroUltCorrida.setEnabled(false);
+        cbx_cidadesUltCorrida.setEnabled(false);
         txt_filtro.setEnabled(!b);
     }
 
@@ -156,11 +159,11 @@ public class Frm_CadCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Telefone", "Telefone2", "Nome", "Endereço"
+                "Código", "Telefone", "Telefone2", "Nome", "Endereço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -175,12 +178,15 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_clientes);
         if (tb_clientes.getColumnModel().getColumnCount() > 0) {
-            tb_clientes.getColumnModel().getColumn(0).setMinWidth(80);
-            tb_clientes.getColumnModel().getColumn(0).setPreferredWidth(80);
-            tb_clientes.getColumnModel().getColumn(0).setMaxWidth(80);
+            tb_clientes.getColumnModel().getColumn(0).setMinWidth(75);
+            tb_clientes.getColumnModel().getColumn(0).setPreferredWidth(75);
+            tb_clientes.getColumnModel().getColumn(0).setMaxWidth(75);
             tb_clientes.getColumnModel().getColumn(1).setMinWidth(80);
             tb_clientes.getColumnModel().getColumn(1).setPreferredWidth(80);
             tb_clientes.getColumnModel().getColumn(1).setMaxWidth(80);
+            tb_clientes.getColumnModel().getColumn(2).setMinWidth(80);
+            tb_clientes.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tb_clientes.getColumnModel().getColumn(2).setMaxWidth(80);
         }
 
         javax.swing.GroupLayout pnl_pesquisaLayout = new javax.swing.GroupLayout(pnl_pesquisa);
@@ -301,13 +307,13 @@ public class Frm_CadCliente extends javax.swing.JFrame {
 
         pnl_principalEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Principal Destino"));
 
-        jLabel2.setText("Endereço *:");
+        jLabel2.setText("Endereço:");
 
-        jLabel14.setText("Bairro *:");
+        jLabel14.setText("Bairro:");
 
-        jLabel15.setText("Cidade *:");
+        jLabel15.setText("Cidade:");
 
-        jLabel16.setText("Numero *:");
+        jLabel16.setText("Numero:");
 
         javax.swing.GroupLayout pnl_principalEnderecoLayout = new javax.swing.GroupLayout(pnl_principalEndereco);
         pnl_principalEndereco.setLayout(pnl_principalEnderecoLayout);
@@ -416,7 +422,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         txt_codigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_codigo.setEnabled(false);
 
-        jLabel7.setText("Telefone:");
+        jLabel7.setText("Telefone *:");
 
         try {
             txt_telefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
@@ -444,6 +450,13 @@ public class Frm_CadCliente extends javax.swing.JFrame {
 
         jLabel20.setText("Passageiros*:");
 
+        txt_qtdePassageiros.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_qtdePassageiros.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_qtdePassageirosFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_dadosPrincipaisLayout = new javax.swing.GroupLayout(pnl_dadosPrincipais);
         pnl_dadosPrincipais.setLayout(pnl_dadosPrincipaisLayout);
         pnl_dadosPrincipaisLayout.setHorizontalGroup(
@@ -464,7 +477,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(txt_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -604,7 +617,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         if (tb_clientes.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(null, "Selecione 1 linha de cada vez para Apagar!");
         } else {
-            if (JOptionPane.showConfirmDialog(null, "Deseja realmente apagar o Cliente " + tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 1).toString(), "", 0, 0) == 0) {
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente apagar o Cliente " + tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 3).toString(), "", 0, 0) == 0) {
                 removeCliente(tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 0).toString());
             }
         }
@@ -614,7 +627,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         setEnabledButtons(false);
         limparCampos();
         cliente = new Cliente();
-        txt_nome.requestFocus();
+        txt_telefone1.requestFocus();
         cbx_cidadesDestino.setSelectedItem("PATOS DE MINAS");
         cbx_cidadesUltCorrida.setSelectedItem("PATOS DE MINAS");
     }//GEN-LAST:event_btn_novoActionPerformed
@@ -625,12 +638,31 @@ public class Frm_CadCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-//        validaCampos();
+        if (txt_telefone1.getText().replace("(", "").replace(")", "").replace("-", "").trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Telefone 1 inválido!");
+            txt_telefone1.requestFocus();
+        } else {
+            if (txt_nome.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nome inválido!");
+                txt_nome.requestFocus();
+            } else {
+                if (txt_qtdePassageiros.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Quantidade de passageiros inválida!");
+                    txt_qtdePassageiros.requestFocus();
+                } else {
+                    salvar();
+                }
+            }
+        }
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nomeActionPerformed
+
+    private void txt_qtdePassageirosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_qtdePassageirosFocusLost
+        btn_salvar.requestFocus();
+    }//GEN-LAST:event_txt_qtdePassageirosFocusLost
 
     /**
      * @param args the command line arguments
@@ -720,11 +752,10 @@ public class Frm_CadCliente extends javax.swing.JFrame {
             txt_telefone1.setText(cliente.getTelefone1());
             txt_telefone2.setText(cliente.getTelefone2());
             txt_nome.setText(cliente.getNome());
-            txt_qtdePassageiros.setText(cliente.getPassageiros()+"");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar os dados do motorista!\n" + e);
+            txt_qtdePassageiros.setText(cliente.getPassageiros() + "");
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar os dados do cliente!\n" + e);
         }
     }
 
@@ -743,7 +774,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
     }
 
     private void removeCliente(String codigo) {
-         try {
+        try {
             clienteDAO = new ClienteDAO();
             clienteDAO.remover(clienteDAO.buscar(Integer.parseInt(codigo)));
             TableConfig.getModel(tb_clientes).removeRow(tb_clientes.getSelectedRow());
@@ -752,6 +783,57 @@ public class Frm_CadCliente extends javax.swing.JFrame {
             limparCampos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao remover o Cliente!\n" + e);
+        }
+    }
+
+    private void salvar() {
+        try {
+            cliente.setNome(txt_nome.getText());
+            cliente.setTelefone1(txt_telefone1.getText());
+            if (txt_telefone2.getText().replace("(", "").replace(")", "").replace("-", "").trim().isEmpty()) {
+                cliente.setTelefone2("(  )           ");
+            }
+            cliente.setTelefone2(txt_telefone2.getText());
+            cliente.setPassageiros(Integer.parseInt(txt_qtdePassageiros.getText()));
+            clienteDAO = new ClienteDAO();
+            clienteDAO.salvar(cliente);
+            JOptionPane.showMessageDialog(null, "Cliente Salvo com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o Cliente!\n" + e);
+        } finally {
+            setEnabledButtons(true);
+            limparCampos();
+            listaClientes();
+        }
+    }
+
+    private void listaClientes() {
+        try {
+            clienteDAO = new ClienteDAO();
+            TableConfig.limpaTabela(tb_clientes);
+            for (Cliente cliente : clienteDAO.listar()) {
+                String[] linha = new String[]{cliente.getCodcliente().toString(),
+                    cliente.getTelefone1(),
+                    cliente.getTelefone2(),
+                    cliente.getNome(),
+                    getEnderecoByCliente(cliente)
+                };
+                TableConfig.getModel(tb_clientes).addRow(linha);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar os Clientes!\n" + e);
+        }
+    }
+
+    private String getEnderecoByCliente(Cliente cliente) {
+        if (cliente.getCorridaList().isEmpty()) {
+            return "Vazio";
+        } else {
+            Corrida ultimaCorrida = new Corrida();
+            for (Corrida corrida : cliente.getCorridaList()) {
+                ultimaCorrida = corrida;
+            }
+            return ultimaCorrida.getCodenderecoDestino().getEndereco();
         }
     }
 }

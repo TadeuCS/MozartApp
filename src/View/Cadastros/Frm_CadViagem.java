@@ -6,11 +6,9 @@
 package View.Cadastros;
 
 import Controller.CidadeDAO;
-import Controller.MotoristaDAO;
 import Controller.ViagemDAO;
 import Model.Cidade;
 import Model.Viagem;
-import Util.Classes.IntegerDocument;
 import Util.Classes.MoneyDocument;
 import Util.Classes.TableConfig;
 import javax.persistence.NoResultException;
