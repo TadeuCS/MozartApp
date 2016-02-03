@@ -14,6 +14,7 @@ import java.util.List;
  * @author Tadeu
  */
 public class UsuarioDAO extends Conexao{
+    
     public void salvar(Usuario user){
         em.getTransaction().begin();
         em.merge(user);

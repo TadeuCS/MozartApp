@@ -12,6 +12,7 @@ import Model.Cliente;
 import Model.Corrida;
 import Util.Classes.IntegerDocument;
 import Util.Classes.TableConfig;
+import Util.Classes.TelefoneDocument;
 import Util.Classes.UpperDocument;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
@@ -132,13 +133,13 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_codigo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txt_telefone1 = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-        txt_telefone2 = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txt_qtdePassageiros = new javax.swing.JTextField();
+        txt_telefone1 = new javax.swing.JTextField();
+        txt_telefone2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cliente");
@@ -212,7 +213,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txt_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -424,21 +425,7 @@ public class Frm_CadCliente extends javax.swing.JFrame {
 
         jLabel7.setText("Telefone *:");
 
-        try {
-            txt_telefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txt_telefone1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel11.setText("Telefone2:");
-
-        try {
-            txt_telefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txt_telefone2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel1.setText("Nome *:");
 
@@ -457,6 +444,20 @@ public class Frm_CadCliente extends javax.swing.JFrame {
             }
         });
 
+        txt_telefone1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_telefone1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_telefone1FocusLost(evt);
+            }
+        });
+
+        txt_telefone2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_telefone2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_telefone2FocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_dadosPrincipaisLayout = new javax.swing.GroupLayout(pnl_dadosPrincipais);
         pnl_dadosPrincipais.setLayout(pnl_dadosPrincipaisLayout);
         pnl_dadosPrincipaisLayout.setHorizontalGroup(
@@ -468,13 +469,13 @@ public class Frm_CadCliente extends javax.swing.JFrame {
                 .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(txt_telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txt_telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
@@ -490,15 +491,15 @@ public class Frm_CadCliente extends javax.swing.JFrame {
                 .addGroup(pnl_dadosPrincipaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(txt_telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(txt_telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
-                    .addComponent(txt_qtdePassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 11, Short.MAX_VALUE))
+                    .addComponent(txt_qtdePassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -664,6 +665,18 @@ public class Frm_CadCliente extends javax.swing.JFrame {
         btn_salvar.requestFocus();
     }//GEN-LAST:event_txt_qtdePassageirosFocusLost
 
+    private void txt_telefone1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone1FocusLost
+        if(!txt_telefone1.getText().trim().isEmpty()){
+            TelefoneDocument.trataTelefone(txt_telefone1);
+        }
+    }//GEN-LAST:event_txt_telefone1FocusLost
+
+    private void txt_telefone2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone2FocusLost
+        if(!txt_telefone2.getText().trim().isEmpty()){
+            TelefoneDocument.trataTelefone(txt_telefone2);
+        }
+    }//GEN-LAST:event_txt_telefone2FocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -742,8 +755,8 @@ public class Frm_CadCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txt_numeroDestino;
     private javax.swing.JTextField txt_numeroUltCorrida;
     private javax.swing.JTextField txt_qtdePassageiros;
-    private javax.swing.JFormattedTextField txt_telefone1;
-    private javax.swing.JFormattedTextField txt_telefone2;
+    private javax.swing.JTextField txt_telefone1;
+    private javax.swing.JTextField txt_telefone2;
     // End of variables declaration//GEN-END:variables
 
     private void carregaDadosNaTela(Cliente cliente) {
@@ -836,4 +849,5 @@ public class Frm_CadCliente extends javax.swing.JFrame {
             return ultimaCorrida.getCodenderecoDestino().getEndereco();
         }
     }
+
 }

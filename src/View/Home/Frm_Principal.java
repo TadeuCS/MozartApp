@@ -9,9 +9,7 @@ import View.Cadastros.Frm_CadCorrida;
 import View.Cadastros.Frm_CadMotorista;
 import View.Cadastros.Frm_CadUsuario;
 import View.Cadastros.Frm_CadViagem;
-import View.Consulta.Frm_ConsRotas;
 import View.Consulta.Frm_ConsViagens;
-import View.Relatorios.Frm_RelFaturamento;
 import java.awt.Event;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -510,8 +508,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_item_cadUsuarioActionPerformed
 
     private void atalhoEmissaoContratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoEmissaoContratoMousePressed
-        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
-//        Frm_CadCorrida f= new Frm_CadCorrida();
+        Frm_CadCorrida f= new Frm_CadCorrida(null);
     }//GEN-LAST:event_atalhoEmissaoContratoMousePressed
 
     private void atalhoConsRetDevMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atalhoConsRetDevMousePressed
@@ -545,8 +542,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_atalhoConsPrecoViagensMousePressed
 
     private void item_cadCorridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cadCorridaActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo ainda não desenvolvido!");
-//        Frm_CadCorrida f = new Frm_CadCorrida();
+        Frm_CadCorrida f = new Frm_CadCorrida(null);
     }//GEN-LAST:event_item_cadCorridaActionPerformed
 
     private void item_consPrecoViagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_consPrecoViagensActionPerformed

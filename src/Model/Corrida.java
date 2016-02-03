@@ -52,12 +52,23 @@ public class Corrida implements Serializable {
     @JoinColumn(name = "CODCLIENTE", referencedColumnName = "CODCLIENTE")
     @ManyToOne(optional = false)
     private Cliente codcliente;
+    @JoinColumn(name = "CODSTATUSCORRIDA", referencedColumnName = "CODSTATUSCORRIDA")
+    @ManyToOne
+    private StatusCorrida codStatusCorrida;
 
     public Corrida() {
     }
 
     public Corrida(Integer codcorrida) {
         this.codcorrida = codcorrida;
+    }
+
+    public StatusCorrida getCodStatusCorrida() {
+        return codStatusCorrida;
+    }
+
+    public void setCodStatusCorrida(StatusCorrida codStatusCorrida) {
+        this.codStatusCorrida = codStatusCorrida;
     }
 
     public Integer getCodcorrida() {

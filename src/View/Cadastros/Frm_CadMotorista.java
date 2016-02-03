@@ -39,7 +39,7 @@ public class Frm_CadMotorista extends javax.swing.JFrame {
 
     private void setFieldsCase() {
         txt_nome.setDocument(new UpperDocument(255));
-        txt_placa.setDocument(new UpperDocument(7));
+        txt_placa.setDocument(new UpperDocument(8));
         txt_endereco.setDocument(new UpperDocument(255));
         txt_bairro.setDocument(new UpperDocument(255));
         txt_numero.setDocument(new IntegerDocument(5));
